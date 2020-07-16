@@ -1,2 +1,2 @@
 # Competitive-Programming
-All my competitive programming solutions across major competitions.
+Most of my recent competitive programming solutions across major competitions.
