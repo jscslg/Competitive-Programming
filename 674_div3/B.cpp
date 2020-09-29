@@ -16,23 +16,22 @@
 
 using namespace std; 
 
-ll po(ll num,ll p=MOD-2){
-    ll res=1;
-    while(p>0){
-        if(p&1) res=(res*num)%MOD;
-        p>>=1;
-        num=(num*num)%MOD;
-    }
-    return res;
-}
-
 void solve(){
-
+    int n,m;
+    cin>>n>>m;
+    bool f=0;
+    f(i,0,n){
+        int a,b,c,d;
+        cin>>a>>b>>c>>d;
+        if(b==c) f=1;
+    }
+    if(m%2==1) f=0;
+    cout<<(f?"YES\n":"NO\n");
 }
 
 int main(){
     fast;
-    ll t;
+    int t;
     cin>>t;
     while(t--){
         solve();

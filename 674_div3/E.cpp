@@ -16,24 +16,21 @@
 
 using namespace std; 
 
-ll po(ll num,ll p=MOD-2){
-    ll res=1;
-    while(p>0){
-        if(p&1) res=(res*num)%MOD;
-        p>>=1;
-        num=(num*num)%MOD;
-    }
-    return res;
-}
-
 void solve(){
-
+    int n,a,b,c,x,y,z;
+    cin>>n>>a>>b>>c>>x>>y>>z;
+    int mx=0,mn=0;
+    mx+=min(a,y)+min(b,z)+min(c,x);
+    if(a>x+z) mn+=a-x-z;
+    else if(b>x+y) mn+=b-x-y;
+    else if(c>y+z) mn+=c-y-z;
+    cout<<mn<<" "<<mx;
 }
 
 int main(){
     fast;
-    ll t;
-    cin>>t;
+    ll t=1;
+    //cin>>t;
     while(t--){
         solve();
     }

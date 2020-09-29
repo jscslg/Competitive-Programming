@@ -16,26 +16,36 @@
 
 using namespace std; 
 
-ll po(ll num,ll p=MOD-2){
-    ll res=1;
-    while(p>0){
-        if(p&1) res=(res*num)%MOD;
-        p>>=1;
-        num=(num*num)%MOD;
-    }
-    return res;
-}
-
 void solve(){
-
+    ll n;
+    cin>>n;
+    vi a(n);
+    for(auto& i:a) cin>>i;
+    ll i=0,cur,res=0;
+    while(i<n){
+        cur=0;
+        unordered_map<ll,bool> m;
+        while(i<n){
+            
+            cur+=a[i];
+            if(cur==0 || m.find(cur)!=m.end()){
+                res++;
+                break;
+            }
+            m[cur]=1;
+            ++i;
+            //cout<<cur<<" ";
+        }
+        //cout<<endl;
+    }
+    cout<<res<<endl;
 }
 
 int main(){
     fast;
-    ll t;
-    cin>>t;
-    while(t--){
-        solve();
-    }
+    //unordered_map<ll,bool> m;
+    //m[-11]=1;
+    //if(m.find(-11)!=m.end()) cout<<"AAWA";
+    solve();
     return 0;
 }

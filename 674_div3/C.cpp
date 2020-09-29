@@ -16,18 +16,11 @@
 
 using namespace std; 
 
-ll po(ll num,ll p=MOD-2){
-    ll res=1;
-    while(p>0){
-        if(p&1) res=(res*num)%MOD;
-        p>>=1;
-        num=(num*num)%MOD;
-    }
-    return res;
-}
-
 void solve(){
-
+    ll n,a,b;
+    cin>>n;
+    a=sqrt(n),b=(n-1)/a+1;
+    cout<<a+b-2<<endl;
 }
 
 int main(){
