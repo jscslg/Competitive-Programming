@@ -1,31 +1,17 @@
 {
-	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
-	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
-	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
-	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
-	// Placeholders with the same ids are connected.
-	// Example:
-	// "Print to console": {
-	// 	"scope": "javascript,typescript",
-	// 	"prefix": "log",
-	// 	"body": [
-	// 		"console.log('$1');",
-	// 		"$2"
-	// 	],
-	// 	"description": "Log output to console"
-	// }
 	"": {
-		"prefix": "lets",
+		"prefix": "start",
 		"body": [
 			"#include <bits/stdc++.h>",
-			"typedef long long ll;",
+			"#define ll long long",
+			"#define ldb long double",
 			"#define MOD 1000000007",
+			"#define any_data int",
 			"#define f(i,a,b) for(int i=(a);i<(b);++i)",
 			"#define f_(i,a,b) for(int i=(a);i>=(b);--i)",
-			"#define vi vector<int>",
+			"#define vi vector<any_data>",
 			"#define vvi vector<vi>",
-			"#define ii pair<int,int>",
+			"#define ii pair<any_data,any_data>",
 			"#define vii vector<ii>",
 			"#define hmax priority_queue<int>",
 			"#define hmin priority_queue<int,vi,greater<int>>",
@@ -35,16 +21,9 @@
 			"#define all(v) (v).begin(),(v).end()",
 			"#define uniquefy(v) v.resize(unique(v.begin(), v.end()) - v.begin())",
 			"#define fast ios_base::sync_with_stdio(false), cin.tie(NULL), cout.tie(NULL)",
-			"",
 			"using namespace std;", 
-			"",
-			"void c_p_c()",
-			"{",
-			"    #ifndef ONLINE_JUDGE",
-			"    freopen(\"input.txt\", \"r\", stdin);",
-			"    freopen(\"output.txt\", \"w\", stdout);",
-			"    #endif",
-			"}",
+			"void c_p_c(){ freopen(\"input.txt\", \"r\", stdin);freopen(\"output.txt\", \"w\", stdout); }",
+			"const int max=2.1e6;",
 			"",
 			"void solve(){",
 			"",
@@ -52,8 +31,10 @@
 			"",
 			"int main(){",
 			"    fast;",
+			"    #ifndef ONLINE_JUDGE",
 			"    c_p_c();",
-			"    ll t;",
+			"    #endif",
+			"    int t;",
 			"    cin>>t;",
 			"    while(t--){",
 			"        solve();",
