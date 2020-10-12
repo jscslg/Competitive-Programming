@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #define ll long long
+#define ldb long double
 #define MOD 1000000007
 #define any_data int
 #define f(i,a,b) for(int i=(a);i<(b);++i)
@@ -18,28 +19,25 @@
 #define fast ios_base::sync_with_stdio(false), cin.tie(NULL), cout.tie(NULL)
 using namespace std;
 void c_p_c(){ freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout); }
-const int mx=2.1e6;
+const int mx=1e6;
 
 void solve(){
-    int n,m;
-    cin>>n>>m;
-    vii a(n),b(m);
-    for(auto& i:a) cin>>i.F>>i.S;
-    for(auto& i:b) cin>>i.F>>i.S;
-    vi bad(mx,-1);
-    for(auto& x:a){
-        for(auto& y:b){
-            if(x.F<=y.F && x.S<=y.S) {
-                bad[y.F-x.F]=max(bad[y.F-x.F],y.S-x.S);
-            }
+    ll n,s;
+    cin>>n>>s;
+    vector<ll> a(n);
+    for(auto& i:a) cin>>i;
+    ll m=n+1,cur=0,i=0,j=0;
+    while(j<n){
+        while(cur<=s&&j<n){
+            cur+=a[j++];
+        }
+        while(cur>s&&i<n){
+            m=min(m,j-i);
+            cur-=a[i++];
         }
     }
-    int cur=-1,res=mx;
-    f_(i,mx-1,0){
-        cur=max(cur,bad[i]);
-        res=min(res,cur+i+1);
-    }
-    cout<<res<<endl;
+    if(m==n+1) cout<<-1<<endl;
+    else cout<<m<<endl;
 }
 
 int main(){
@@ -47,8 +45,8 @@ int main(){
     #ifndef ONLINE_JUDGE
     c_p_c();
     #endif
-    int t=1;
-    //cin>>t;
+    int t;
+    cin>>t;
     while(t--){
         solve();
     }
