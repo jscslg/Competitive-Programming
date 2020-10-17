@@ -17,25 +17,25 @@ using namespace std;
 #define S second
 #define all(v) (v).begin(),(v).end()
 #define INIT 0
-const int mx=1e6;
+const int MAX=1e5+1;
 void initialize(){}
 
 void solve(){
     int h,w,n,m;
     cin>>w>>h>>n>>m;
-    bitset<64> x(w+1),y(h+1),xd(w+1),yd(h+1),sq(min(h,w)+1);
-    f(i,0,n){int a;cin>>a;x[a]=1;}
-    f(i,0,n){int a;cin>>a;y[a]=1;}
-    f(i,0,w+1) if(x[i]) xd|=(x<<i);
-    f(i,0,h+1) if(y[i]) yd|=(y<<i);
-    int m=0;
+    bitset<MAX> x,y,xd,yd,ry;
+    f(i,0,n){int a;cin>>a;x.set(a);}
+    f(i,0,m){int a;cin>>a;y.set(a);ry.set(h-a);}
+    f(i,0,w+1) if(x[i]) xd|=(x>>i);
+    f(i,0,h+1) if(y[i]) yd|=(y>>i);
+    int m2=(yd&xd).count();
     f(i,0,h+1){
-        if(y[i]) continue;
-        bitset<64> nyd=yd;
-        nyd|=(y<<i),nyd|=(y>>i);
-        m=max(m,(int)(nyd&xd).count());
+        //if(y[MAX-i]) continue;
+        bitset<MAX> nyd;
+        nyd|=yd,nyd|=(y>>i),nyd|=(ry>>(h-i));
+        m2=max(m2,(int)(nyd&xd).count());
     }
-    cout<<m;
+    cout<<m2-1;
 }
 
 int32_t main(){

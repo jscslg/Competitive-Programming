@@ -17,25 +17,23 @@ using namespace std;
 #define S second
 #define all(v) (v).begin(),(v).end()
 #define INIT 0
-const int mx=1e6;
+const int MAX=1e6;
 void initialize(){}
 
 void solve(){
-    int h,w,n,m;
-    cin>>w>>h>>n>>m;
-    bitset<64> x(w+1),y(h+1),xd(w+1),yd(h+1),sq(min(h,w)+1);
-    f(i,0,n){int a;cin>>a;x[a]=1;}
-    f(i,0,n){int a;cin>>a;y[a]=1;}
-    f(i,0,w+1) if(x[i]) xd|=(x<<i);
-    f(i,0,h+1) if(y[i]) yd|=(y<<i);
-    int m=0;
-    f(i,0,h+1){
-        if(y[i]) continue;
-        bitset<64> nyd=yd;
-        nyd|=(y<<i),nyd|=(y>>i);
-        m=max(m,(int)(nyd&xd).count());
+    string s;
+    cin>>s;
+    int n=s.size(),b=0;
+    stack<int> a;
+    f(i,0,n){
+        if(s[i]=='A') a.push(1);
+        else if(s[i]=='B'){
+            if(a.empty()) b++;
+            else a.pop();
+        }
     }
-    cout<<m;
+    int res=a.size()+(b%2);
+    cout<<res<<endl;
 }
 
 int32_t main(){
@@ -46,8 +44,8 @@ int32_t main(){
     #if INIT
     initialize();
     #endif
-    int t=1;
-    //cin>>t;
+    int t;
+    cin>>t;
     while(t--){
         solve();
     }

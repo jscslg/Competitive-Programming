@@ -17,19 +17,14 @@ using namespace std;
 #define S second
 #define all(v) (v).begin(),(v).end()
 #define INIT 0
-const int mx=1e6;
+const int MAX=1e6;
 void initialize(){}
 
 void solve(){
-    int n;
-    cin>>n;
-    string s;
-    cin>>s;
-    int i=0,j=n-1,res=0;
-    while(s[i]==s[j]) ++i,--j;
-    n=j-i+1;
-    int t=n-1;
-    while(t>=n/2) res+=t--;
+    int x1,x2,y1,y2,res=0;
+    cin>>x1>>y1>>x2>>y2;
+    if(x1!=x2&&y1!=y2) res+=2;
+    res+=abs(x1-x2)+abs(y1-y2);
     cout<<res<<endl;
 }
 
@@ -41,8 +36,8 @@ int32_t main(){
     #if INIT
     initialize();
     #endif
-    int t=1;
-    //cin>>t;
+    int t;
+    cin>>t;
     while(t--){
         solve();
     }

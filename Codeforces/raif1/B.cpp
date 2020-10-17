@@ -17,25 +17,34 @@ using namespace std;
 #define S second
 #define all(v) (v).begin(),(v).end()
 #define INIT 0
-const int mx=1e6;
+const int MAX=1e6;
 void initialize(){}
 
 void solve(){
-    int h,w,n,m;
-    cin>>w>>h>>n>>m;
-    bitset<64> x(w+1),y(h+1),xd(w+1),yd(h+1),sq(min(h,w)+1);
-    f(i,0,n){int a;cin>>a;x[a]=1;}
-    f(i,0,n){int a;cin>>a;y[a]=1;}
-    f(i,0,w+1) if(x[i]) xd|=(x<<i);
-    f(i,0,h+1) if(y[i]) yd|=(y<<i);
-    int m=0;
-    f(i,0,h+1){
-        if(y[i]) continue;
-        bitset<64> nyd=yd;
-        nyd|=(y<<i),nyd|=(y>>i);
-        m=max(m,(int)(nyd&xd).count());
+    int n;
+    string s;
+    cin>>n>>s;
+    int n1=0,n2=0;
+    vi a;
+    bool start=0;
+    for(int i=0;i<n;){
+        if(s[i]=='>') n1++,i++;
+        else if(s[i]=='<') n2++,i++;
+        else{ 
+            int cnt=0;
+            if(i==0) start=1;
+            while(i<n && s[i]=='-') ++i,++cnt;
+            if(i==n&&a.size()>0&&start) a[0]+=cnt; 
+            else a.pb(cnt);
+        }
     }
-    cout<<m;
+    if(n1==0||n2==0) cout<<n;
+    else{
+        int res=0;
+        f(i,0,a.size()) res+=a[i]+1;
+        cout<<res;
+    }
+    cout<<endl;
 }
 
 int32_t main(){
@@ -46,8 +55,8 @@ int32_t main(){
     #if INIT
     initialize();
     #endif
-    int t=1;
-    //cin>>t;
+    int t;
+    cin>>t;
     while(t--){
         solve();
     }

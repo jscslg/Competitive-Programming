@@ -2,13 +2,14 @@
 using namespace std;
 #define ll long long
 #define ldb long double
-//#define int ll
+#define int ll
 #define MOD 1000000007
 #define f(i,a,b) for(int i=(a);i<(b);++i)
 #define f_(i,a,b) for(int i=(a);i>=(b);--i)
 #define vi vector<int>
 #define vvi vector<vi>
 #define ii pair<int,int>
+#define iii pair<int,ii>
 #define vii vector<ii>
 #define hmax priority_queue<int>
 #define hmin priority_queue<int,vi,greater<int>>
@@ -17,25 +18,33 @@ using namespace std;
 #define S second
 #define all(v) (v).begin(),(v).end()
 #define INIT 0
-const int mx=1e6;
+const int MAX=1e6;
 void initialize(){}
 
+int c(int n,int p){
+    int x=n/p,y=n%p,z=p-y;
+    return y*(x+1)*(x+1)+z*x*x;
+}
+
 void solve(){
-    int h,w,n,m;
-    cin>>w>>h>>n>>m;
-    bitset<64> x(w+1),y(h+1),xd(w+1),yd(h+1),sq(min(h,w)+1);
-    f(i,0,n){int a;cin>>a;x[a]=1;}
-    f(i,0,n){int a;cin>>a;y[a]=1;}
-    f(i,0,w+1) if(x[i]) xd|=(x<<i);
-    f(i,0,h+1) if(y[i]) yd|=(y<<i);
-    int m=0;
-    f(i,0,h+1){
-        if(y[i]) continue;
-        bitset<64> nyd=yd;
-        nyd|=(y<<i),nyd|=(y>>i);
-        m=max(m,(int)(nyd&xd).count());
+    int n,k,sum=0,res=0;
+    cin>>n>>k;
+    priority_queue<iii> h;
+    f(i,0,n) {
+        int a;
+        cin>>a;
+        h.push({c(a,1)-c(a,2),{a,2}});
+        res+=a*a;
     }
-    cout<<m;
+    k-=n;
+    f(i,0,k){
+        iii e=h.top();
+        h.pop();
+        res-=e.F;
+        int a=e.S.F,b=e.S.S;
+        h.push({c(a,b)-c(a,b+1),{a,b+1}});
+    }
+    cout<<res;
 }
 
 int32_t main(){
