@@ -4,11 +4,12 @@ using namespace std;
 #define ldb long double
 //#define int ll
 #define MOD 1000000007
-#define f(i,a,b) for(int i=(a);i<(b);++i)
-#define f_(i,a,b) for(int i=(a);i>=(b);--i)
+#define fr(i,a) for(int i=0;i<(a);++i)
+#define tr(i,a) for(auto& i:a)
 #define vi vector<int>
 #define vvi vector<vi>
 #define ii pair<int,int>
+#define iii pair<int,ii>
 #define vii vector<ii>
 #define hmax priority_queue<int>
 #define hmin priority_queue<int,vi,greater<int>>
@@ -17,11 +18,13 @@ using namespace std;
 #define S second
 #define all(v) (v).begin(),(v).end()
 #define INIT 0
-const int mx=1e6;
+const int MAX=1e6;
 void initialize(){}
 
 void solve(){
-    
+    int a,b;
+    cin>>a>>b;
+    cout<<((a|b)-(a&b))<<endl;
 }
 
 int32_t main(){

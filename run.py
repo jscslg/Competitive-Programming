@@ -6,7 +6,7 @@ if dname[-3:].lower()=="cpp":
     fname=dname.split("\\")[-1]
     parent=dname.split("\\")[-2]
     print(">>>> BUILDING ")
-    os.system("g++ "+parent+"/"+fname+" -o "+parent+"/"+fname[:-3]+"exe")
+    os.system("g++ "+parent+"/"+fname+" -o "+parent+"/"+fname[:-3]+"exe"+" -DLOCAL_JUDGE")
     com=dname[:-3]+"exe"
     sdir=dname.split("\\")
     com=""
