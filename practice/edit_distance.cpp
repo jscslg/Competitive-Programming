@@ -20,7 +20,6 @@ using namespace std;
 #define vii vector<ii>
 #define MOD 1000000007
 const int MAX=1e5+1;
-
 void solve(){
     string s1,s2;
     cin>>s1>>s2;

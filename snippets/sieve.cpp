@@ -1,17 +1,13 @@
 //simple sieve
-void sieve(){
-    for(int i=2;i*i<=MAX;i++){
-        if(pr[i]){
-            for(int j=i*i;j<=MAX;j+=i) pr[j]=0;
-        }
+for(int i=2;i*i<=MAX;i++){
+    if(pr[i]){
+        for(int j=i*i;j<=MAX;j+=i) pr[j]=0;
     }
 }
 //factorisation_sieve
-void sieve(){
-    for(int i=2;i*i<=MAX;i++){
-        if(pr[i]==1){
-            for(int j=i*i;j<=MAX;j+=i) if(pr[j]==1) pr[j]=i;
-        }
+for(int i=2;i*i<=MAX;i++){
+    if(pr[i]==1){
+        for(int j=i*i;j<=MAX;j+=i) if(pr[j]==1) pr[j]=i;
     }
 }
 //segmented_sieve

@@ -8,7 +8,15 @@
 		"files.associations": {
 			"iostream": "cpp",
 			"ostream": "cpp",
-			"bitset": "cpp"
+			"bitset": "cpp",
+			"*.tcc": "cpp",
+			"deque": "cpp",
+			"list": "cpp",
+			"string": "cpp",
+			"unordered_map": "cpp",
+			"unordered_set": "cpp",
+			"vector": "cpp",
+			"cmath": "cpp"
 		}
 	}
 }
