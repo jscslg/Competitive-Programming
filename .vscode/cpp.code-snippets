@@ -15,6 +15,7 @@
 		  "#define all(v) (v).begin(),(v).end()",
 		  "#define tr(i,a) for(auto& i:(a))",
 		  "#define fr(i,a,b) for(int i=(a);i<(b);++i)",
+		  "#define frv(i,a,b) for(int i=(a);i>=(b);--i)",
 		  "#define vi vector<int>",
 		  "#define vvi vector<vi>",
 		  "#define ii pair<int,int>",
@@ -50,13 +51,13 @@
 	"power mod m": {
 		"prefix": "powm",
 		"body": [
-		  "ll powm(ll num,ll p=MOD-2){",
-		  "    ll res=1;",
-		  "    while(p>0){",
-		  "        if(p&1) res=(res*num)%MOD;",
-		  "        p>>=1,num=(num*num)%MOD;",
+		  "ll powm(ll number,ll exponent=MOD-2){",
+		  "    ll ret=1;",
+		  "    while(exponent>0){",
+		  "        if(exponent&1) ret=(ret*number)%MOD;",
+		  "        exponent>>=1,number=(number*number)%MOD;",
 		  "    }",
-		  "    return res;",
+		  "    return ret;",
 		  "}"
 		],
 		"description": "power mod m"
@@ -64,20 +65,21 @@
 	  "power logr": {
 		"prefix": "powr",
 		"body": [
-		  "ll powr(ll num,ll p){",
-		  "    ll res=1;",
-		  "    while(p>0){",
-		  "        if(p&1) res*=num;",
-		  "        p>>=1,num*=num;",
+		  "ll powr(ll number,ll exponent){",
+		  "    ll ret=1;",
+		  "    while(exponent>0){",
+		  "        if(exponent&1) ret*=number;",
+		  "        exponent>>=1,number*=number;",
 		  "    }",
-		  "    return res;",
+		  "    return ret;",
 		  "}"
 		],
-		"description": "power logr"
+		"description": "power"
 	  },
 	  "sieve": {
 		"prefix": "sieve",
 		"body": [
+	 	  "pr = vector<int>(MAX+1,0);",
 		  "for(int i=2;i*i<=MAX;i++){",
 		  "    if(pr[i]){",
 		  "        for(int j=i*i;j<=MAX;j+=i) pr[j]=0;",
@@ -89,6 +91,7 @@
 	  "sieve with factorisation": {
 		"prefix": "fsieve",
 		"body": [
+			"pr = vector<int>(MAX+1,1);",
 		  "for(int i=2;i*i<=MAX;i++){",
 		  "    if(pr[i]==1){",
 		  "        for(int j=i*i;j<=MAX;j+=i) if(pr[j]==1) pr[j]=i;",

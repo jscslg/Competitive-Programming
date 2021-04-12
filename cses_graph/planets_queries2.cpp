@@ -11,6 +11,7 @@ using namespace std;
 #define all(v) (v).begin(),(v).end()
 #define tr(i,a) for(auto& i:(a))
 #define fr(i,a,b) for(int i=(a);i<(b);++i)
+#define frv(i,a,b) for(int i=(a);i>=(b);--i)
 #define vi vector<int>
 #define vvi vector<vi>
 #define ii pair<int,int>
@@ -21,29 +22,43 @@ using namespace std;
 #define MOD 1000000007
 //#define int ll
 int MAX=1e5;
+int n,q,cno=0;
+vi comp,vis,p,cyc;
+vvi g;
 
-int solve(vvi a,vvi b){
-    int xx[8]={-2,-2,-1,-1,1,1,2,2},yy[8]={-1,1,-2,2,-2,2,-1,1};
-    int m=a.size(),res=INT_MAX;
-    vvi vis(8,vi(8,0));
-    queue<pair<pair<int,int>,pair<int,int>>> q;
-    q.push({{0,0},{b[0][0],b[0][1]}});
-    while(!q.empty()){
-        int s=q.front().first.first,d=q.front().first.second,i=q.front().second.first,j=q.front().second.second;
-        q.pop();
-        if(vis[i][j]) continue;
-        fr(k,0,m){
-            if(a[k][0]==i && a[k][1]==j)
+void dfs(int i,int c){
+    comp[i]=c;
+    vis[i]=1;
+    tr(e,g[i]) {
+        if(vis[e]==2) continue;
+        if(!vis[e]) {
+            p[e]=i;
+            dfs(e,c);
         }
-        vis[i][j]=1;
-        fr(k,0,8){
-            int x=i+xx[k],y=j+yy[k];
-            if(x>=0 && y>=0 && x<8 && y<8){
-                if(vis[x][y]) 
-                q.push()
-            }
+        else {
+            cno++;
+            int j=i;
+            while(j!=e) cyc[j]=cno,j=p[j];
+            cyc[j]=cno;
         }
     }
+    vis[i]=2;
+}
+
+void solve(){
+    vi t = vi(n);
+    g = vvi(n,vi());
+    cin>>n>>q;
+    fr(i,0,n){
+        cin>>t[i],t[i]--;
+        g[i].pb(t[i]);
+    }
+    comp = vi(n,0);
+    vis = vi(n,0);
+    cyc = vi(n,0);
+    int c=1;
+    fr(i,0,n) if(!vis[i]) dfs(i,c++);
+    
 }
 
 int32_t main(){
@@ -56,13 +71,7 @@ int32_t main(){
     cin>>t;
     for(int i=1;i<=t;i++){
         //cout<<"Case #"<<i<<": ";
-        int n;
-        cin>>n;
-        vvi a(n,vi(2)),b(1,vi(2));
-        tr(i,a) tr(j,i) cin>>j;
-        cin>>b[0][0]>>b[0][1];
-        cout<<solve(a,b)<<" ";
-        cout<<"\n";
+        solve();
     }
     return 0;
 }

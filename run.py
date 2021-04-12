@@ -7,7 +7,10 @@ if dname[-3:].lower()=="cpp":
     fname=dname.split("/")[-1]
     parent=dname.split("/")[-2]
     print(">>>> BUILDING ")
-    os.system("g++ "+parent+"/"+fname+" -o exec -DLOCAL_JUDGE")
+    if parent!="Competitive-Programming":
+        os.system("g++ "+parent+"/"+fname+" -o exec -DLOCAL_JUDGE")
+    else:
+        os.system("g++ "+fname+" -o exec -DLOCAL_JUDGE")
     print(">>>> EXECUTING ")
     os.system("./exec")
 
