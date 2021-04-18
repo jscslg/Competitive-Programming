@@ -3,14 +3,8 @@ import os
 file=sys.argv[1:]
 dname=" ".join(file)
 if dname[-3:].lower()=="cpp":
-    #print("hello"+dname)
-    fname=dname.split("/")[-1]
-    parent=dname.split("/")[-2]
     print(">>>> BUILDING ")
-    if parent!="Competitive-Programming":
-        os.system("g++ "+parent+"/"+fname+" -o exec -DLOCAL_JUDGE")
-    else:
-        os.system("g++ "+fname+" -o exec -DLOCAL_JUDGE")
+    os.system("g++ "+dname+" -o exec -DLOCAL_JUDGE")
     print(">>>> EXECUTING ")
     os.system("./exec")
 
