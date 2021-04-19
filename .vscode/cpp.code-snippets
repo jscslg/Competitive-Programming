@@ -40,7 +40,7 @@
 		  "    int t=1;",
 		  "    cin>>t;",
 		  "    for(int i=1;i<=t;i++){",
-		  "        //cout<<\"Case #\"<<i<<\": \";",
+		  "        cout<<\"Case #\"<<i<<\": \";",
 		  "        solve();",
 		  "    }",
 		  "    return 0;",
@@ -79,7 +79,7 @@
 	  "sieve": {
 		"prefix": "sieve",
 		"body": [
-	 	  "pr = vector<int>(MAX+1,0);",
+	 	  "pr = vector<int>(MAX+1,1);",
 		  "for(int i=2;i*i<=MAX;i++){",
 		  "    if(pr[i]){",
 		  "        for(int j=i*i;j<=MAX;j+=i) pr[j]=0;",
@@ -91,7 +91,7 @@
 	  "sieve with factorisation": {
 		"prefix": "fsieve",
 		"body": [
-			"pr = vector<int>(MAX+1,1);",
+		  "pr = vector<int>(MAX+1,1);",
 		  "for(int i=2;i*i<=MAX;i++){",
 		  "    if(pr[i]==1){",
 		  "        for(int j=i*i;j<=MAX;j+=i) if(pr[j]==1) pr[j]=i;",
@@ -108,7 +108,7 @@
 		  "    vector<bool> temp(m+1,1),pr(r-l+1,1);",
 		  "    for(int i=2;i*i<=m;i++){",
 		  "        if(temp[i]){",
-		  "            for(int j=i*i;j<=m;j+=i) temp[i]=0;",
+		  "            for(int j=i*i;j<=m;j+=i) temp[j]=0;",
 		  "        }",
 		  "    }",
 		  "    for(int i=2;i<=m;i++){",
