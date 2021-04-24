@@ -6,6 +6,7 @@
 	],
 	"settings": {
 		"files.associations": {
+			"*.js": "javascriptreact",
 			"iostream": "cpp",
 			"ostream": "cpp",
 			"bitset": "cpp",
@@ -16,7 +17,8 @@
 			"unordered_map": "cpp",
 			"unordered_set": "cpp",
 			"vector": "cpp",
-			"cmath": "cpp"
+			"cmath": "cpp",
+			"set": "cpp"
 		}
 	}
 }
