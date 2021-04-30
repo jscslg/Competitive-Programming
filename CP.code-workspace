@@ -18,7 +18,13 @@
 			"unordered_set": "cpp",
 			"vector": "cpp",
 			"cmath": "cpp",
-			"set": "cpp"
+			"set": "cpp",
+			"array": "cpp",
+			"string_view": "cpp",
+			"initializer_list": "cpp",
+			"regex": "cpp",
+			"utility": "cpp",
+			"valarray": "cpp"
 		}
 	}
 }
