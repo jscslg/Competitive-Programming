@@ -24,33 +24,38 @@ using namespace std;
 int MAX=1e5;
 
 void solve(){
-    int n;
-    cin>>n;
-    vi a(n),b(n),pre(n);
-    tr(e,a) cin>>e;
-    tr(e,b) cin>>e;
-    vvi dp(n,vi(n,0));
-    fr(i,0,n) pre[i]=a[i]*b[i]+(i==0?0:pre[i-1]);
-    fr(i,0,n) dp[i][i]=a[i]*b[i];
-    fr(i,0,n-1) dp[i][i+1]=a[i]*b[i+1]+a[i+1]*b[i];
-    for(int i=2;i<n;i+=2){
-        for(int j=0,k=i;k<n;k++,j++){
-            dp[j][k]=dp[j+1][k-1]+a[j]*b[k]+a[k]*b[j];
+    int n,l,r,res=0;
+    cin>>n>>l>>r;
+    vi a(n);
+    vii f(n,{0,0});
+    tr(e,a) cin>>e,e--;
+    fr(i,0,l) f[a[i]].F++;
+    fr(i,l,n) f[a[i]].S++;
+    int x=0,y=0;
+    fr(i,0,n){
+        if(f[i].S<f[i].F) {
+            int t=f[i].F-f[i].S;
+            if(l<=r) x+=t;
+            else if((l-r)/2<=t/2) {
+                res+=(l-r)/2,t-=(l-r);
+                l=r=n/2;
+                x+=t;
+            }
+            else res+=t/2,x+=(t&1),l+=t/2,r-=t/2;
+        }
+        else if(f[i].S>f[i].F){
+            int t=f[i].S-f[i].F;
+            if(r<=l) y+=t;
+            else if((r-l)/2<=t/2) {
+                res+=(r-l)/2,t-=(r-l);
+                l=r=n/2;
+                y+=t;
+            }
+            else res+=t/2,y+=(t&1),r+=t/2,l-=t/2;
         }
     }
-    for(int i=3;i<n;i+=2){
-        for(int j=0,k=i;k<n;k++,j++){
-            dp[j][k]=dp[j+1][k-1]+a[j]*b[k]+a[k]*b[j];
-        }
-    }
-    int m=0;
-    fr(i,1,n){
-        for(int j=0,k=i;k<n;j++,k++){
-            int x=dp[j][k]-(pre[k]-(j==0?0:pre[j-1]));
-            if(m<x) m=x;
-        }
-    }
-    cout<<pre[n-1]+m;
+    //cout<<x<<"x"<<y<<" ";
+    cout<<res+max(x,y)<<"\n";
 }
 
 int32_t main(){
@@ -60,7 +65,7 @@ int32_t main(){
     #endif
     //INIT
     int t=1;
-    //cin>>t;
+    cin>>t;
     for(int i=1;i<=t;i++){
         //cout<<"Case #"<<i<<": ";
         solve();

@@ -7,6 +7,8 @@
 using namespace __gnu_pbds;
 using namespace std;
 template<class T> using oset=tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
+template<class T> using hmax=priority_queue<T>;
+template<class T> using hmin=priority_queue<T,vector<T>,greater<T>>;
 #define ll long long
 #define ldb long double
 #define pb push_back
@@ -16,26 +18,26 @@ template<class T> using oset=tree<T, null_type, less<T>, rb_tree_tag,tree_order_
 #define tr(i,a) for(auto& i:(a))
 #define fr(i,a,b) for(int i=(a);i<(b);++i)
 #define frv(i,a,b) for(int i=(a);i>=(b);--i)
-#define vi vector<int>
-#define vvi vector<vi>
-#define ii pair<int,int>
-#define iii pair<ii,int>
-#define vii vector<ii>
-template<class T> using hmax=priority_queue<T>;
-template<class T> using hmin=priority_queue<T,vi,greater<T>>;
-//#define int ll
+#define ar(n) array<int,n>
+#define ve vector
+#define vi ve<int>
+#define int ll
 const int MOD = 1000000007, MOD2 = 998244353;
 const int MAX=1e5;
 
 void solve(){
-    vector<array<int,2>> a;
-    a.pb({3,2});
-    a.pb({1,2});
-    a.pb({3,1});
-    a.pb({2,3});
-    a.pb({1,1});
-    sort(all(a));
-    tr(e,a) cout<<e[0]<<" "<<e[1];
+    int n,k;
+    cin>>n>>k;
+    vi a(n);
+    tr(e,a) cin>>e;
+    int l=0,r=1e18;
+    while(l<r){
+        int m=l+(r-l)/2,x=0;
+        fr(i,0,n) x+=min((ll)1e9,m/a[i]);
+        if(x>=k) r=m;
+        else l=m+1;
+    }
+    cout<<l;
 }
 
 int32_t main(){
@@ -45,7 +47,7 @@ int32_t main(){
     #endif
     //INIT
     int t=1;
-    cin>>t;
+    //cin>>t;
     for(int i=1;i<=t;i++){
         //cout<<"Case #"<<i<<": ";
         solve();

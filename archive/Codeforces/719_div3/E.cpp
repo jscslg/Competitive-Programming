@@ -24,33 +24,30 @@ using namespace std;
 int MAX=1e5;
 
 void solve(){
-    int n;
-    cin>>n;
-    vi a(n),b(n),pre(n);
-    tr(e,a) cin>>e;
-    tr(e,b) cin>>e;
-    vvi dp(n,vi(n,0));
-    fr(i,0,n) pre[i]=a[i]*b[i]+(i==0?0:pre[i-1]);
-    fr(i,0,n) dp[i][i]=a[i]*b[i];
-    fr(i,0,n-1) dp[i][i+1]=a[i]*b[i+1]+a[i+1]*b[i];
-    for(int i=2;i<n;i+=2){
-        for(int j=0,k=i;k<n;k++,j++){
-            dp[j][k]=dp[j+1][k-1]+a[j]*b[k]+a[k]*b[j];
+    int n,m=0,j=0,res=0;
+    string s;
+    cin>>n>>s;
+    vi a;
+    fr(i,0,n) if(s[i]=='*') a.pb(i);
+    if(a.size()<=1) {
+        cout<<"0\n";
+        return;
+    }
+    m=a[a.size()/2];
+    frv(i,m,0){
+        if(s[i]=='*') {
+            res+=(m-i-j);
+            j++;
         }
     }
-    for(int i=3;i<n;i+=2){
-        for(int j=0,k=i;k<n;k++,j++){
-            dp[j][k]=dp[j+1][k-1]+a[j]*b[k]+a[k]*b[j];
+    j = (j>1?1:0);
+    fr(i,m+1,n){
+        if(s[i]=='*'){
+            res+=(i-m-j);
+            j++;
         }
     }
-    int m=0;
-    fr(i,1,n){
-        for(int j=0,k=i;k<n;j++,k++){
-            int x=dp[j][k]-(pre[k]-(j==0?0:pre[j-1]));
-            if(m<x) m=x;
-        }
-    }
-    cout<<pre[n-1]+m;
+    cout<<res<<"\n";
 }
 
 int32_t main(){
@@ -60,7 +57,7 @@ int32_t main(){
     #endif
     //INIT
     int t=1;
-    //cin>>t;
+    cin>>t;
     for(int i=1;i<=t;i++){
         //cout<<"Case #"<<i<<": ";
         solve();

@@ -24,21 +24,16 @@ using namespace std;
 int MAX=1e5;
 
 void solve(){
-    int n,q,m=0;
-    cin>>n>>q;
-    vector<string> str(n);
-    vi s(n);
-    fr(i,0,n) {
-        cin>>str[i]>>s[i];
-        if(s[i]<=q/2){
-            s[i]=q-s[i];
-            tr(e,str[i]) e=(e=='F'?'T':'F');
-        }
-        m=max(m,s[i]);
-    }
-    fr(i,0,n) if(m==s[i]){
-        cout<<str[i]<<" "<<m<<"/1\n";
-        return;
+    int n,m;
+    cin>>n>>m;
+    vi a(n),b(m);
+    multiset<int> s;
+    tr(e,a) cin>>e,s.insert(e);
+    tr(e,b) {
+        cin>>e;
+        auto x=s.upper_bound(e);
+        if(x==s.begin()) cout<<"-1\n";
+        else cout<<*(--x)<<"\n",s.erase(x);
     }
 }
 
@@ -49,9 +44,9 @@ int32_t main(){
     #endif
     //INIT
     int t=1;
-    cin>>t;
+    //cin>>t;
     for(int i=1;i<=t;i++){
-        cout<<"Case #"<<i<<": ";
+        //cout<<"Case #"<<i<<": ";
         solve();
     }
     return 0;
