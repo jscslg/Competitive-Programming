@@ -7,41 +7,38 @@
 using namespace __gnu_pbds;
 using namespace std;
 template<class T> using oset=tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update> ;
+template<class T> using hmax=priority_queue<T>;
+template<class T> using hmin=priority_queue<T,vector<T>,greater<T>>;
 #define ll long long
 #define ldb long double
 #define pb push_back
-#define F first
-#define S second
 #define all(v) (v).begin(),(v).end()
 #define tr(i,a) for(auto& i:(a))
 #define fr(i,a,b) for(int i=(a);i<(b);++i)
 #define frv(i,a,b) for(int i=(a);i>=(b);--i)
-#define vi vector<int>
-#define vvi vector<vi>
-#define ii pair<int,int>
-#define iii pair<ii,int>
-#define vii vector<ii>
-template<class T> using hmax=priority_queue<T>;
-template<class T> using hmin=priority_queue<T,vi,greater<T>>;
+#define ar(n) array<int,n>
+#define ve vector
+#define vi ve<int>
 //#define int ll
 const int MOD = 1000000007, MOD2 = 998244353;
 const int MAX=1e5;
 
 void solve(){
-    vector<array<int,2>> a;
-    a.pb({3,2});
-    a.pb({1,2});
-    a.pb({3,1});
-    a.pb({2,3});
-    a.pb({1,1});
-    sort(all(a));
-    tr(e,a) cout<<e[0]<<" "<<e[1];
+    int n,m;
+    cin>>n>>m;
+    ve<ve<ar(2)>> g(n);
+    fr(i,0,m){
+        int x,l,r;
+        cin>>x>>l>>r,x--,l--,r--;
+        g[x].pb({l,r});
+    }
 }
 
 int32_t main(){
     ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
     #ifdef LOCAL_JUDGE
-    freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout);
+        auto start = chrono::high_resolution_clock::now();
+        freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout);
     #endif
     //INIT
     int t=1;
@@ -50,5 +47,10 @@ int32_t main(){
         //cout<<"Case #"<<i<<": ";
         solve();
     }
+    #ifdef LOCAL_JUDGE
+        auto stop = chrono::high_resolution_clock::now();
+        auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+        cerr << "Time taken : " << duration.count() / 1000000.0 << "seconds"<< "\n";
+    #endif
     return 0;
 }

@@ -55,6 +55,58 @@
 		],
 		"description": "macros"
 	  },
+	  "power mod m": {
+		"prefix": "powm",
+		"body": [
+		  "ll powm(ll number,ll exponent=MOD-2){",
+		  "    ll ret=1;",
+		  "    while(exponent>0){",
+		  "        if(exponent&1) ret=(ret*number)%MOD;",
+		  "        exponent>>=1,number=(number*number)%MOD;",
+		  "    }",
+		  "    return ret;",
+		  "}"
+		],
+		"description": "power mod m"
+	  },
+	  "power": {
+		"prefix": "powr",
+		"body": [
+		  "ll powr(ll number,ll exponent){",
+		  "    ll ret=1;",
+		  "    while(exponent>0){",
+		  "        if(exponent&1) ret*=number;",
+		  "        exponent>>=1,number*=number;",
+		  "    }",
+		  "    return ret;",
+		  "}"
+		],
+		"description": "power"
+	  },
+	  "sieve": {
+		"prefix": "sieve",
+		"body": [
+	 	  "pr = vector<int>(MAX+1,1);",
+		  "for(int i=2;i*i<=MAX;i++){",
+		  "    if(pr[i]){",
+		  "        for(int j=i*i;j<=MAX;j+=i) pr[j]=0;",
+		  "    }",
+		  "}"
+		],
+		"description": "sieve"
+	  },
+	  "sieve with factorisation": {
+		"prefix": "fsieve",
+		"body": [
+		  "pr = vector<int>(MAX+1,1);",
+		  "for(int i=2;i*i<=MAX;i++){",
+		  "    if(pr[i]==1){",
+		  "        for(int j=i*i;j<=MAX;j+=i) if(pr[j]==1) pr[j]=i;",
+		  "    }",
+		  "}"
+		],
+		"description": "sieve with factorisation"
+	  },
 	"sieve with segmentation": {
 		"prefix": "segsieve",
 		"body": [
